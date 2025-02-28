@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Lookup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .marks {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Enter Enrollment Number</h1>
+        <input type="text" id="enrollmentNumber" placeholder="Enter Enrollment Number">
+        <button onclick="getMarks()">Check Marks</button>
+
+        <div class="marks" id="marksDisplay"></div>
+    </div>
+
+    <script>
+        // Sample marks for students (you can expand this as needed)
+        const studentMarks = {
+            "230007001": 85,
+            "230007002": 90,
+            "230007003": 78,
+            "230007004": 92,
+            "230007005": 88,
+            "230007006": 91,
+            "230007007": 87,
+            "230007008": 76,
+            "230007009": 80,
+            "230007010": 94,
+            "230007011": 79,
+            "230007012": 88,
+            "230007013": 85,
+            "230007014": 93,
+            "230007015": 82,
+            "230007016": 91,
+            "230007017": 77,
+            "230007018": 84,
+            "230007019": 86,
+            "230007020": 89,
+            "230007021": 83,
+            "230007022": 95,
+            "230007023": 78,
+            "230007024": 92,
+            "230007025": 81,
+            "230007026": 90,
+            "230007027": 93,
+            "230007028": 87,
+            "230007029": 79,
+            "230007030": 84,
+            "230007031": 88,
+            "230007032": 92,
+            "230007033": 80,
+            "230007034": 89,
+            "230007035": 76,
+            "230007036": 95
+        };
+
+        function getMarks() {
+            const enrollmentNumber = document.getElementById("enrollmentNumber").value;
+            const marksDisplay = document.getElementById("marksDisplay");
+
+            if (studentMarks[enrollmentNumber]) {
+                marksDisplay.textContent = `Marks: ${studentMarks[enrollmentNumber]}`;
+                marksDisplay.style.color = "green";
+            } else {
+                marksDisplay.textContent = "Enrollment number not found!";
+                marksDisplay.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
