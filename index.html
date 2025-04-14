@@ -1,138 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Marks Lookup</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Student Marks Lookup</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+        /* Video background */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
 
-    .container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: 10% auto;
+        }
 
-    h1 {
-      margin-bottom: 24px;
-      color: #333;
-    }
+        h1 {
+            margin-bottom: 24px;
+            color: #333;
+        }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 20px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-      transition: border-color 0.3s;
-    }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
 
-    input[type="text"]:focus {
-      border-color: #2575fc;
-      outline: none;
-    }
+        input[type="text"]:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
 
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      background-color: #2575fc;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background-color: #1a5ed0;
-    }
+        button:hover {
+            background-color: #1a5ed0;
+        }
 
-    .marks {
-      margin-top: 24px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
+        .marks {
+            margin-top: 24px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Enter Enrollment Number</h1>
-    <input type="text" id="enrollmentNumber" placeholder="Enter Enrollment Number" />
-    <button onclick="getMarks()">Check Marks</button>
-    <div class="marks" id="marksDisplay"></div>
-  </div>
 
-  <script>
-    const studentMarks = {
-      "230007001": 85,
-      "230007002": 10,
-      "230007003": 78,
-      "230007004": 92,
-      "230007005": 88,
-      "230007006": 91,
-      "230007007": 87,
-      "230007008": 76,
-      "230007009": 80,
-      "230007010": 94,
-      "230007011": 79,
-      "230007012": 88,
-      "230007013": 85,
-      "230007014": 93,
-      "230007015": 82,
-      "230007016": 91,
-      "230007017": 77,
-      "230007018": 84,
-      "230007019": 86,
-      "230007020": 89,
-      "230007021": 83,
-      "230007022": 95,
-      "230007023": 78,
-      "230007024": 92,
-      "230007025": 81,
-      "230007026": 90,
-      "230007027": 93,
-      "230007028": 87,
-      "230007029": 79,
-      "230007030": 84,
-      "230007031": 88,
-      "230007032": 92,
-      "230007033": 80,
-      "230007034": 89,
-      "230007035": 76,
-      "230007036": 95
-    };
+    <!-- Background Video -->
+    <video autoplay muted loop id="background-video">
+        <source src="https://rr1---sn-pni5ooxunva-g5wz.googlevideo.com/videoplayback?expire=1744641735&ei=Z8r8Z73qMeSCi9oP8f3asAo&ip=176.4.129.247&id=o-APJaSZ3XMNH9bnFirHLcsonWUCMmDEdY9D8-8ETDFOUV&itag=137&aitags=134%2C136%2C137%2C160%2C243&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&rms=au%2Cau&bui=AccgBcOvCJfqFYtSrQvxQtYTSkjI9pVXm8xgMbh8IMl0nu_kS-WFcjOSCvpu79Jz7wVm_02vl8CPYu4C&spc=_S3wKuiVoaxJ8wCkIGXM-LJUyNkaJjQUwLhZgF5QbQlBVZzq6g&vprv=1&svpuc=1&mime=video%2Fmp4&ns=IXQDU9qdLzqrnoI3tL6L-dIQ&rqh=1&gir=yes&clen=12872174&dur=59.266&lmt=1677308388142353&keepalive=yes&fexp=24350590,24350737,24350827,24350961,24351063,24351173,24351229,24351524,24351528,24351543,24351545,24351594,24351606,24351637,51355912,51435733&c=WEB&sefc=1&txp=6216224&n=XA1Ll6Ffi2S5Hg&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRAIgXq5O9oiQkpA7Da4kRBsWqFsKGEAW9cDXUThK_-Ku3wYCIAgPBpxYlZ87h2wXUh6a4jfjghRm6XxHLL7tTLNfeAoN&pot=MnTkdUwI9CXD6uRJXGf_pxV0uijqN3wRKCEr5mdp9ChCvvzFHgpTiIvv8PKwZujR3hpHpQk41fYhrkWE47IVJQ1mv5aM1TO1X4nzWS4OpVmRZe4baN6hKJWaLZzjafnDIczJXveLjDtg9Xjhz3LhM4If1ZB3Nw==&title=one%20minute%20motion%20graphic%20background%20loop%20100%%20free&redirect_counter=1&rm=sn-i5hey7l&rrc=104&req_id=c91007c9d61ea3ee&cms_redirect=yes&ipbypass=yes&met=1744620152,&mh=g_&mip=27.54.179.9&mm=31&mn=sn-pni5ooxunva-g5wz&ms=au&mt=1744619837&mv=m&mvi=1&pcm2cms=yes&pl=24&lsparams=ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pcm2cms,pl,rms&lsig=ACuhMU0wRgIhAPr6unTL-jpJX6aFROR9vP9z9oGcLjThoEIQqbQesv7wAiEA0EQDvT7Yh_hakSCcTYYQkQXir-drvFPZ6dzzUecfw-4%3D" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
 
-    function getMarks() {
-      const enrollmentNumber = document.getElementById("enrollmentNumber").value;
-      const marksDisplay = document.getElementById("marksDisplay");
+    <div class="container">
+        <h1>Enter Enrollment Number</h1>
+        <input type="text" id="enrollmentNumber" placeholder="Enter Enrollment Number" />
+        <button onclick="getMarks()">Check Marks</button>
+        <div class="marks" id="marksDisplay"></div>
+    </div>
 
-      if (studentMarks[enrollmentNumber]) {
-        marksDisplay.textContent = `Marks: ${studentMarks[enrollmentNumber]}`;
-        marksDisplay.style.color = "green";
-      } else {
-        marksDisplay.textContent = "Enrollment number not found!";
-        marksDisplay.style.color = "red";
-      }
-    }
-  </script>
+    <script>
+        // Sample data with names and marks
+        const studentData = {
+            "230007001": { name: "Prashant Bhuva", marks: 85 },
+            "230007002": { name: "Dhara Patel", marks: 10 },
+            "230007003": { name: "Ravi Shah", marks: 78 },
+            "230007004": { name: "Sneha Joshi", marks: 92 },
+            "230007005": { name: "Amit Kumar", marks: 88 },
+            "230007006": { name: "Neha Mehta", marks: 91 },
+            // Add more students as needed...
+        };
+
+        function getMarks() {
+            const enrollmentNumber = document.getElementById("enrollmentNumber").value.trim();
+            const marksDisplay = document.getElementById("marksDisplay");
+
+            if (studentData[enrollmentNumber]) {
+                const { name, marks } = studentData[enrollmentNumber];
+                marksDisplay.textContent = `${name} - Marks: ${marks}`;
+                marksDisplay.style.color = "green";
+            } else {
+                marksDisplay.textContent = "Enrollment number not found!";
+                marksDisplay.style.color = "red";
+            }
+        }
+    </script>
+
 </body>
 </html>
