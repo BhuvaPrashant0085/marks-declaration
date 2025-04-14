@@ -95,16 +95,17 @@
 
     <script>
         // Sample data with names and marks
-        const studentData = {
-            "230007001": { name: "Anand", marks: 85 },
-            "230007002": { name: "Prashant", marks: 80 },
-            "230007003": { name: "Abhishek", marks: 78 },
-            "230007004": { name: "Heer", marks: 92 },
-            "230007005": { name: "Aman", marks: 88 },
-            "230007006": { name: "Bonisha", marks: 91 },
-             "230007007": { name: "Dhruvi", marks: 99 },
-            // Add more students as needed...
-        };
+       const studentData = {
+    "230007001": { name: "Anand", marks: 85, mobile: "9512340001" },
+    "230007002": { name: "Prashant", marks: 80, mobile: "9512399064" }, // Your number
+    "230007003": { name: "Abhishek", marks: 78, mobile: "9512340003" },
+    "230007004": { name: "Heer", marks: 92, mobile: "9512340004" },
+    "230007005": { name: "Aman", marks: 88, mobile: "9512340005" },
+    "230007006": { name: "Bonisha", marks: 91, mobile: "9512340006" },
+    "230007007": { name: "Dhruvi", marks: 99, mobile: "9512340007" },
+    // Add more if needed...
+};
+
 
         function getMarks() {
             const enrollmentNumber = document.getElementById("enrollmentNumber").value.trim();
