@@ -93,9 +93,9 @@
         <div class="marks" id="marksDisplay"></div>
     </div>
 
-    <script>
-        // Sample data with names and marks
-       const studentData = {
+  <script>
+    // Updated student data with name, marks, and mobile
+    const studentData = {
     "230007001": { name: "Anand", marks: 85, mobile: "9512340001" },
     "230007002": { name: "Prashant", marks: 80, mobile: "9512399064" }, // Your number
     "230007003": { name: "Abhishek", marks: 78, mobile: "9512340003" },
@@ -107,20 +107,26 @@
 };
 
 
-        function getMarks() {
-            const enrollmentNumber = document.getElementById("enrollmentNumber").value.trim();
-            const marksDisplay = document.getElementById("marksDisplay");
+    function getMarks() {
+    const enrollmentNumber = document.getElementById("enrollmentNumber").value.trim();
+    const marksDisplay = document.getElementById("marksDisplay");
 
-            if (studentData[enrollmentNumber]) {
-                const { name, marks } = studentData[enrollmentNumber];
-                marksDisplay.textContent = `${name} - Marks: ${marks}`;
-                marksDisplay.style.color = "green";
-            } else {
-                marksDisplay.textContent = "Enrollment number not found!";
-                marksDisplay.style.color = "red";
-            }
-        }
-    </script>
+    if (studentData[enrollmentNumber]) {
+        const { name, marks, mobile } = studentData[enrollmentNumber];
+        marksDisplay.innerHTML = `
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Marks:</strong> ${marks}</p>
+            <p><strong>Mobile:</strong> ${mobile}</p>
+        `;
+        marksDisplay.style.color = "green";
+    } else {
+        marksDisplay.textContent = "Enrollment number not found!";
+        marksDisplay.style.color = "red";
+    }
+}
+
+</script>
+
 
 </body>
 </html>
